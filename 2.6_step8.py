@@ -11,7 +11,3 @@ subsequence = list()
 for i in range(1, n + 1):
     subsequence += [i] * i
 print(*subsequence[:n])
-
-
-
-
