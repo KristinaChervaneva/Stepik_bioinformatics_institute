@@ -16,22 +16,23 @@
 number = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'}
 '''
 
-filename = input("Enter the filename: ")
-with open(filename, 'r') as file:
-    compressed_text = file.readline().strip()
-
-output_text = ""
-num = ""
-for char in compressed_text:
-    if char.isalpha():
-        if num:
-            output_text += char * int(num)
-            num = ""
+with open("input.txt", "r") as input_file, open("output.txt", "w") as output_file:
+    text = input_file.read()
+    i = 0
+    while i < len(text):
+        if text[i].isalpha():
+            count = ""
+            j = i+1
+            while j < len(text) and text[j].isdigit():
+                count += text[j]
+                j += 1
+            if count != "":
+                count = int(count)
+                output_file.write(text[i]*count)
+                i = j
+            else:
+                output_file.write(text[i])
+                i += 1
         else:
-            output_text += char
-    else:
-        num += char
-
-output_filename = input("Enter the output filename: ")
-with open(output_filename, 'w') as file:
-    file.write(output_text)
+            output_file.write(text[i])
+            i += 1
