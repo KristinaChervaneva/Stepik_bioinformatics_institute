@@ -12,12 +12,12 @@
 '''
 
 with open("input.txt", "r") as input_file, open("output.txt", "w") as output_file:
-    text = input_file.read()
+    text = input_file.read().lower().split()
     d = dict()
     for i in range(len(text)):
-        if text[i].isalpha(): # Добавляем проверку, является ли символ буквой
-            if text[i] not in d:
-                d[text[i]] = text.count(text[i])
+        if text[i] not in d:
+            d[text[i]] = text.count(text[i])
+
     key_list = list(d.keys())
     val_list = list(d.values())
 
@@ -25,4 +25,6 @@ with open("input.txt", "r") as input_file, open("output.txt", "w") as output_fil
     print(key_list[position], max(d.values()))
 
     output_file.write("{} {}".format(key_list[position], max(d.values())))
+
+
 
