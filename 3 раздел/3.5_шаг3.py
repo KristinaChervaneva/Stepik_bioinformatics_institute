@@ -13,5 +13,5 @@ arg1 arg2
 import sys
 from sys import argv
 
-print(sys.argv)
+print(sys.argv[1:])
 
